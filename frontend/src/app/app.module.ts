@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { RequestRestComponent } from './components/password/request-rest/request-rest.component';
+import { RequestRestComponent } from './components/password/request-reset/request-rest.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 
 @NgModule({
