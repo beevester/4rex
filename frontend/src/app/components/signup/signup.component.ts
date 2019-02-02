@@ -16,8 +16,8 @@ export class SignupComponent implements OnInit {
     password: null,
     state: null,
     city: null,
-    post_cost: null,
-    password_confirmation: null,
+    post_code: null,
+    // password_confirmation: null,
 
   };
 
@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
   onSubmit() {
       this.httpCalls.signUp(this.form).subscribe(
           data => console.log(data),
-          error => this.handleError(error)
+          error => console.log(error)
       );
   }
 

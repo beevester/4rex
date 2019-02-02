@@ -13,7 +13,7 @@ class SignUpRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,12 @@ class SignUpRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required',
+            'address' => 'required',
+            'address2' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'post_code' => 'required',
         ];
     }
 }

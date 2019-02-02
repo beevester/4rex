@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpCallsService} from '../../services/http-calls.service';
+import { HttpCallsService } from '../../services/http-calls.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
       this.httpCalls.login(this.form).subscribe(
           data => console.log(data),
-        error => this.handleError(error)
+        error => console.log(error)
       );
   }
 
