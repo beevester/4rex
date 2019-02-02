@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpCallsService} from '../../services/http-calls.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +15,10 @@ export class LoginComponent implements OnInit {
 
   public error = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpCalls: HttpCallsService) { }
 
   onSubmit() {
-      return this.http.post('http://localhost:8000/api/login', this.form).subscribe(
+      this.httpCalls.login(this.form).subscribe(
           data => console.log(data),
         error => this.handleError(error)
       );
