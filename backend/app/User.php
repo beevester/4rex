@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'address', 'address2', 'state', 'city', 'post_code'
     ];
 
     /**
@@ -29,6 +29,8 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+
+
     public function getJWTIdentifier()
     {
         // TODO: Implement getJWTIdentifier() method.
@@ -39,5 +41,9 @@ class User extends Authenticatable implements JWTSubject
         // TODO: Implement getJWTCustomClaims() method.
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
 }

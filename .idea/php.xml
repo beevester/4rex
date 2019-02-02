@@ -89,6 +89,10 @@
       <path value="$PROJECT_DIR$/backend/vendor/dnoegel/php-xdg-base-dir" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/nexmo-notification-channel" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/backend/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/backend/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/polyfill-php56" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

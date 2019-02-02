@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -7,7 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  public form = {
+    name: null,
+    email: null,
+    address: null,
+    address2: null,
+    password: null,
+    state: null,
+    city: null,
+    post_cost: null,
+    password_confirmation: null,
+
+  };
+
+  public error = [];
+
+  constructor(private http: HttpClient) { }
+
+  onSubmit() {
+      return this.http.post('http://localhost:8000/api/signup', this.form).subscribe(
+          data => console.log(data),
+          error => this.handleError(error)
+      );
+  }
+
+  handleError(error) {
+      return this.error = error.error.errors;
+  }
 
   ngOnInit() {
   }
