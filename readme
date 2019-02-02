@@ -1,0 +1,3 @@
+Before usage please
+- run composer install on the backend
+- run npm install on the frontend
