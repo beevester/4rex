@@ -9,12 +9,12 @@ export class TokenService {
     login: 'http://localhost:8000/api/login',
     signup: 'http://localhost:8000/api/signup',
   };
+  private decodedPayload = null;
 
   constructor() { }
 
   handle(token) {
      this.set(token);
-     console.log(this.payload(token.access_token[1]));
   }
 
   set(token) {
@@ -22,7 +22,8 @@ export class TokenService {
   }
 
   get() {
-    return localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    return token;
   }
 
   remove() {
@@ -30,16 +31,26 @@ export class TokenService {
   }
 
   payload(token) {
-    return token.split('.')[1];
+    const payload = token.split('.')[1];
+    return this.decode(payload);
   }
 
   isValid() {
-    const  token = this.get();
+    const token = this.get();
 
+    if (token) {
+       const payload = this.payload(token).iss;
+
+      if (payload === this.iss.login) {
+          return true;
+      }
+    }
+    return false;
   }
 
   loggedIn() {
-    return true;
+    console.log(this.isValid());
+    return this.isValid();
   }
 
   decode(payload) {
