@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Base</th>
+          <th scope="col">Quote</th>
+          <th scope="col">Rate</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let quote of exchangeRate">
+        <tr (click)="showQuote(quote)">
+          <td>{{ quote.base }}</td>
+          <td>{{ quote.quote }}</td>
+          <td>{{ quote.quotation }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="selectedPair">
+    <app-pair [pair]="selectedPair"></app-pair>
+  </div>
+</div>

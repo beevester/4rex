@@ -11,6 +11,14 @@ import { RequestRestComponent } from './components/password/request-reset/reques
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { HttpCallsService } from './services/http-calls.service';
+import { TokenService } from './services/token.service';
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterLoginService } from './services/after-login.service';
+import { AuthenticationService } from './services/authentication.service';
+import { LiveCurrencyComponent } from './components/live-currency/live-currency.component';
+import { PairComponent } from './components/pair/pair.component';
 
 @NgModule({
   declarations: [
@@ -20,15 +28,20 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     ProfileComponent,
     RequestRestComponent,
-    ResponseResetComponent
+    ResponseResetComponent,
+    LiveCurrencyComponent,
+    PairComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    SnotifyModule,
   ],
-  providers: [],
+  providers: [ HttpCallsService, TokenService, BeforeLoginService, AfterLoginService, AuthenticationService,
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

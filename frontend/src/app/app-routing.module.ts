@@ -7,6 +7,7 @@ import {RequestRestComponent} from './components/password/request-reset/request-
 import {ResponseResetComponent} from './components/password/response-reset/response-reset.component';
 import {BeforeLoginService} from './services/before-login.service';
 import {AfterLoginService} from './services/after-login.service';
+import {LiveCurrencyComponent} from './components/live-currency/live-currency.component';
 
 const routes: Routes = [
   {
@@ -27,11 +28,16 @@ const routes: Routes = [
   {
     path: 'request-password-reset',
     component: RequestRestComponent,
-    canActivate: [AfterLoginService]
+    canActivate: [BeforeLoginService]
   },
   {
     path: 'response-password-reset',
     component: ResponseResetComponent,
+    canActivate: [BeforeLoginService]
+  },
+  {
+    path: 'live-currency',
+    component: LiveCurrencyComponent,
     canActivate: [AfterLoginService]
   }
 ];
