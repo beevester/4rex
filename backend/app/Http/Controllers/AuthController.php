@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SignUpRequest;
 
 use Illuminate\Http\{Response, Request};
-use Illuminate\Support\Facades\Auth;
 use App\User;
 
 

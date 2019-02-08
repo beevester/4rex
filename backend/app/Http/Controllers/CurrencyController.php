@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Purchases;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -22,18 +23,21 @@ class CurrencyController extends Controller
     {
         $q = [];
 
+        $zarBase = $quotes['USDZAR'];
+
+
         foreach ($quotes as $currency => $quote)
         {
-            $base = $this->quote($currency, $quote)[0];
-            $term = $this->quote($currency, $quote)[1];
-            $quotation = $this->quote($currency, $quote)[2];
-            $buy = $this->quote($currency, $quote)[3];
-            $sell = $this->quote($currency, $quote)[4];
-            $q[] = ['base' => $base, 'quote' => $term, 'quotation' => $quotation, 'buy' => $buy, 'sell' => $sell];
+            $term = $this->quote($currency, $quote)['term'];
+            if ($term == 'USD' || $term == 'GBP' || $term == 'KES' || $term == 'EUR')
+            {
+                $quotation = $this->quote($currency, $quote)['quotation'];
+                $quotation = $zarBase/$quotation;
+
+                $q[] = ['base' => 'ZAR', 'quote' => $term, 'quotation' => $quotation];
+            }
         }
-
         return $q;
-
     }
 
     public function quote($currency, $quote)
@@ -42,9 +46,30 @@ class CurrencyController extends Controller
 
         $base = $pair[0];
         $term = $pair[1];
-        $buy = 1 / $quote;
-        $sell = 1 / $buy;
-        return [$base, $term, $quote, $buy, $sell];
+        return ['base' => $base, 'term' => $term, 'quotation' => $quote];
+    }
+
+    public function calculate(Request $quotation)
+    {
+
+        $value = $quotation->get('value');
+        $base = $quotation->get('base');
+        $quote = $quotation->get('term');
+
+        $quote == 'USD' || $base == 'USD' ? $surcharge = 7.5/100: null;
+        $quote == 'GBP' || $base == 'GBP' ? $surcharge =  5/100: null;
+        $quote == 'EUR' || $base == 'EUR' ? $surcharge = 5/100: null;
+        $quote == 'KES' || $base == 'KES' ? $surcharge = 2.5/100: null;
+
+
+        return response()->json($value*$surcharge);
+
+    }
+
+    public function purchase(Request $request)
+    {
+        this.Purchases::create($request->all());
+        return DB::table('purchases')->where(['email' => $request->email]);
     }
 
 }

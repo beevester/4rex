@@ -27,7 +27,16 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('purchases', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('email');
+            $table->float('amount');
+            $table->timestamp('data_purchased');
+        });
     }
+
+
 
     /**
      * Reverse the migrations.
@@ -37,5 +46,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('purchases');
     }
+
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePasswordRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ChangePasswordController extends Controller
@@ -12,7 +11,6 @@ class ChangePasswordController extends Controller
     {
         return $this->getRestPasswordRow($request)->get();
 
-//        return $request->all();
     }
 
     public function getRestPasswordRow($request)

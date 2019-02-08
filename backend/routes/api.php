@@ -14,5 +14,7 @@ Route::group([
     Route::post('sendPasswordResetLink', 'ResetPasswordController@sendEmail');
     Route::post('resetPassword', 'ChangePasswordController@process');
     Route::post('live-currency', 'CurrencyController@liveCurrency');
+    Route::post('calculate', 'CurrencyController@calculate');
+    Route::post('purchase', 'CurrencyController@purchases');
 
 });
