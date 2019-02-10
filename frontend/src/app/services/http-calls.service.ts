@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-// import {Observable} from "rxjs";
-// import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +30,15 @@ export class HttpCallsService {
     return this.http.post(`${this.baseUrl}/live-currency`, endpoint);
   }
 
+  calculate(quotation) {
+    return this.http.post(`${this.baseUrl}/calculate`, quotation);
+  }
+
+  purchase(data) {
+    return this.http.post(`${this.baseUrl}/calculate`, data);
+  }
+
+  currentUser() {
+      return this.http.get(`${this.baseUrl}/currentUser`);
+  }
 }

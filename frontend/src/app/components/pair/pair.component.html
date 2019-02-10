@@ -1,5 +1,38 @@
-<div >
-
-  <h2>Pair</h2>
-  <div>{{ pair.base }} - {{ pair.quote }}</div>
+<div class="card">
+    <div class="card-header">
+        ZAR Currency exchange calculator
+    </div>
+    <div class="card-body form-group">
+        <div class="alert alert-danger" [hidden]="!error">{{ error }}</div>
+        <div class="row">
+            <div class="btn-group offset-4" role="group" aria-label="Basic example">
+                <a (click)="buyOption()"type="button" class="btn btn-secondary btn-sm " >Buy</a>
+                <a (click)="sellOption()" type="button" class="btn btn-secondary btn-sm" >Sell</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Transaction Currency</label>
+                <select [(ngModel)]="quotation"  class="form-control" required>
+                    <option *ngFor="let pair of exchangeRate" [ngValue]="pair">{{ pair.base }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="form-group">
+                <label >Amount in {{ option }}</label>
+                <input [(ngModel)]="quotation.value" type="number"  class="form-control" id="exampleInputEmail1" placeholder="Enter value" required>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer form-group" style="width: max-content">
+       <div class="row">
+           <div class="col-sm-6">
+               <a class="btn btn-outline-primary" (click)="calculate()" >Calculate</a>
+           </div>
+           <div class="col-sm-6">
+               <a class="btn btn-outline-success float-right" (click)="purchase()" >Purchase</a>
+           </div>
+       </div>
+    </div>
 </div>

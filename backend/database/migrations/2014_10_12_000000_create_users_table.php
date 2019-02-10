@@ -34,6 +34,12 @@ class CreateUsersTable extends Migration
             $table->float('amount');
             $table->timestamp('data_purchased');
         });
+
+        Schema::create('currency', function (Blueprint $table) {
+            $table->string('code')->unique();
+            $table->string('country');
+            $table->double('quotation');
+        });
     }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpCallsService} from '../../../services/http-calls.service';
 import {SnotifyService} from 'ng-snotify';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-request-rest',
@@ -12,20 +13,23 @@ export class RequestRestComponent implements OnInit {
   private form = {
     email: null
   };
-  constructor(private http: HttpCallsService, private notify: SnotifyService) { }
+  constructor(
+      private http: HttpCallsService,
+      private notify: SnotifyService,
+      private route: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     this.http.sendPasswordResetLink(this.form).subscribe(
-        data => this.handleResponse(data['token']),
+        data => this.handleResponse(data),
       error => this.notify.error(error.error.error)
     );
   }
 
   handleResponse(response) {
-    console.log(response);
-    this.form.email = null;
+    this.notify.confirm('The reset email was sent to your email', response);
+    console.log('sent');
   }
 }

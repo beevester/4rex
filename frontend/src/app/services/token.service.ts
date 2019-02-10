@@ -35,6 +35,11 @@ export class TokenService {
     return this.decode(payload);
   }
 
+  userInfo(token) {
+    const payload = token.split('.')[2];
+    return payload;
+  }
+
   isValid() {
     const token = this.get();
 

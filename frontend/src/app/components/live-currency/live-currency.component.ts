@@ -1,37 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpCallsService} from '../../services/http-calls.service';
+import { Component, OnInit, Input } from '@angular/core';
 import {Pairs} from '../interface/pairs';
+import {HttpCallsService} from '../../services/http-calls.service';
+
 
 @Component({
-  selector: 'app-live-currency',
-  templateUrl: './live-currency.component.html',
-  styleUrls: ['./live-currency.component.css']
+    selector: 'app-live-currency',
+    templateUrl: './live-currency.component.html',
+    styleUrls: ['./live-currency.component.css']
 })
 export class LiveCurrencyComponent implements OnInit {
 
-  exchangeRate: Pairs;
-  selectedPair: Pairs;
+    exchangeRate: Pairs;
 
-  constructor(private http: HttpCallsService) { }
+    private error = [];
 
-  ngOnInit() {
-    this.currencyUpdate();
-  }
+    constructor(private http: HttpCallsService) { }
 
-  currencyUpdate() {
-    this.http.liveCurrency('live').subscribe(
-      data => this.handleResponse(data),
-      error => console.log(error)
-    );
-  }
+    ngOnInit() {
+        this.http.liveCurrency('live').subscribe(
+            (data) => this.handleProcess(data),
+            (error) => console.log(error)
+        );
+    }
 
-  handleResponse(data) {
-    console.log(data);
-    this.exchangeRate = data;
-  }
+    handleProcess(data) {
+        this.exchangeRate = data;
+    }
 
-  showQuote(quote) {
-    this.selectedPair = quote;
-  }
-
+    // handleError(error) {
+    //     this.error = error.error.error;
+    // }
 }

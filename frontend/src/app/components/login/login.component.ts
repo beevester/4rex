@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
   onSubmit() {
       this.httpCalls.login(this.form).subscribe(
           data => this.handleResponse(data),
-        error => console.log(error)
+        error => this.handleError(error)
       );
   }
 
   handleError(error) {
-    this.error = error.error.error;
+
+    this.error = error.error;
   }
 
   handleResponse(data) {
